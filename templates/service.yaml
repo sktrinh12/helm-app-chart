@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "k8apps.fullname" . }}-svc 
+  labels:
+    {{- include "k8apps.labels" . | nindent 4 }}
+  namespace: {{ .Values.service.namespace }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: {{ .Values.service.targetPort }} 
+      protocol: TCP
+      name: http
+  type: {{ .Values.service.type }}
+  selector:
+    tier: {{ include "k8apps.name" . }}
+    {{- include "k8apps.selectorLabels" . | nindent 4 }}
