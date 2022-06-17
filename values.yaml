@@ -48,6 +48,10 @@ service:
   port: 80
   targetPort: 80
   namespace: "default"
+  annotations: {
+    service.beta.kubernetes.io/aws-load-balancer-type: "external",
+    service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: "ip",
+  }
 
 ingress:
   enabled: false
