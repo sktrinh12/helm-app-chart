@@ -5,6 +5,8 @@ metadata:
   labels:
     {{- include "k8apps.labels" . | nindent 4 }}
   namespace: {{ .Values.service.namespace }}
+  annotations:
+{{- toYaml .Values.service.annotations | nindent 4 }}
 spec:
   type: {{ .Values.service.type }}
   ports:
