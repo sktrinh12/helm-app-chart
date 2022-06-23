@@ -13,6 +13,7 @@ spec:
     matchLabels:
       {{- include "k8apps.selectorLabels" . | nindent 6 }}
       tier: {{ include "k8apps.name" . }}
+  revisionHistoryLimit: 0
   template:
     metadata:
       {{- with .Values.podAnnotations }}
