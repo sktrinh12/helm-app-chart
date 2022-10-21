@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: {{ .Values.namespace }}
+  name: {{ .Values.volumes.configMapName }}
+  labels:
+    {{- include "k8apps.labels" . | nindent 4 }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+  annotations:
+    # use helm hooks to create the configMap before installing or upgrading a helm chart
+    "helm.sh/hook-delete-policy": "before-hook-creation"
+    "helm.sh/hook": pre-upgrade
+data:
+  config.js: {{ .Values.configValues | toYaml | indent 2 }}
