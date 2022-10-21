@@ -5,11 +5,20 @@
 replicaCount: 1
 namespace: "default"
 app: "app"
+terminationGracePeriodSeconds: 10
 
 containers:
   name: "container-name"
+  volumeMounts:
+    name: "config-name"
+    mountPath: "/path/to/mount"
+    subPath: "config-file"
+    readOnly: true
   ports:
     containerPort: 80
+
+# env:
+#   backendUrl: "http://fileupmap.backend.kinnate:8000"
 
 image:
   repository: awsid.dkr.ecr.us-west-2.amazonaws.com/repo-name
@@ -93,3 +102,12 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+volumes:
+  name: react-app-example-config-volume
+  configMapName: react-app-example-config
+
+configValues: |
+  window.REACT_APP_BACKEND_URL=api.kubernetes.com
+  window.REACT_APP_ENVIRONMENT=DEV
+  window.REACT_APP_TEST=test
