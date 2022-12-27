@@ -107,7 +107,7 @@ volumes:
   name: react-app-example-config-volume
   configMapName: react-app-example-config
 
-configValues: |
-  window.REACT_APP_BACKEND_URL=api.kubernetes.com
-  window.REACT_APP_ENVIRONMENT=DEV
-  window.REACT_APP_TEST=test
+configValues: {} #|
+  # window.REACT_APP_BACKEND_URL=api.kubernetes.com
+  # window.REACT_APP_ENVIRONMENT=DEV
+  # window.REACT_APP_TEST=test

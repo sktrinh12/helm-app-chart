@@ -1,3 +1,4 @@
+{{ if .Values.configValues }}
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -13,3 +14,4 @@ metadata:
     "helm.sh/hook": pre-upgrade
 data:
   config.js: {{ .Values.configValues | toYaml | indent 2 }}
+{{ end }}

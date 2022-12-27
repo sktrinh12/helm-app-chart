@@ -37,11 +37,13 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          {{ if .Values.configValues }}
           volumeMounts:
             #override config.js file
             - name: "{{ ((.Values.containers).volumeMounts).name }}"
               mountPath: "{{ ((.Values.containers).volumeMounts).mountPath }}"
               subPath: "{{ ((.Values.containers).volumeMounts).subPath }}"
+          {{ end }}
           ports:
             - name: http
               containerPort: {{ .Values.containers.ports.containerPort }}
@@ -61,7 +63,9 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      {{ if .Values.configValues }}
       volumes:
         - name: {{ .Values.volumes.name }}
           configMap:
             name: {{ .Values.volumes.configMapName }}
+      {{ end }}
