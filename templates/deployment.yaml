@@ -71,5 +71,5 @@ spec:
       {{ end }}
 ---
 {{- if .Values.ingress.enabled }}
-{{- include "k8sapp.ingress" . }}
+{{- include "k8apps.ingress" . }}
 {{- end }}
