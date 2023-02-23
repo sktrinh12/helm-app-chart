@@ -69,7 +69,7 @@ ingress:
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   hosts:
-    null
+    []
     # - host: []
     #   paths:
     #     - path: /
@@ -106,11 +106,7 @@ tolerations: []
 affinity: {}
 
 volumes:
-  name: react-app-example-config-volume
-  configMapName: react-app-example-config
+  name: ''
+  configMapName: ''
 
-configValues:
-  {} #|
-  # window.REACT_APP_BACKEND_URL=api.kubernetes.com
-  # window.REACT_APP_ENVIRONMENT=DEV
-  # window.REACT_APP_TEST=test
+configValues: ''
