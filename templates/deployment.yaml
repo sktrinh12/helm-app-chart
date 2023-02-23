@@ -69,3 +69,7 @@ spec:
           configMap:
             name: {{ .Values.volumes.configMapName }}
       {{ end }}
+---
+{{- if .Values.ingress.enabled }}
+{{- include "k8sapp.ingress" . }}
+{{- end }}
