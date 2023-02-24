@@ -5,12 +5,7 @@ metadata:
   name: {{ include "k8apps.fullname" . }}
   namespace: {{ .Values.Namespace }}
   annotations:
-    kubernetes.io/ingress.class: {{ .Values.ingress.className }}
-    alb.ingress.kubernetes.io/target-type: {{ .Values.ingress.targetType }}
-    alb.ingress.kubernetes.io/scheme: {{ .Values.ingress.scheme }}
-    alb.ingress.kubernetes.io/tags: {{ .Values.ingress.tags }}
-    alb.ingress.kubernetes.io/subnets: {{ .Values.ingress.subnets }}
-    alb.ingress.kubernetes.io/load-balancer-attributes: {{ .Values.ingress.loadBalancerAttributes }}
+{{ toYaml .Values.ingress.annotations | indent 4 }}
 spec:
   rules:
     {{- range .Values.ingress.hosts }}
